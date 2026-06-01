@@ -1,0 +1,5 @@
+This generates a composition space for ThermoCalc to work with. It's also the same kind of generator one would use for affine projections.
+
+The Scheil calculator currently expects the 'Material' column to exist explicitly.
+
+All calculations presume molar fractions.
