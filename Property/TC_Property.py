@@ -41,6 +41,7 @@ def Property(
                           .set_argument('upperTemperatureLimit', upper_temp_limit_in_kelvin)
                           .set_argument('maxNumberOfIterations', 10)
                           .set_composition_unit(CompositionUnit.MOLE_FRACTION))
+        cpu_block: list[int] = list(model_input.index)
         col_1: str = 'Liquidus_temperature_(C)'
         col_2: str = 'Solidus_temperature_(C)'
         for i in model_input.index:
@@ -62,7 +63,7 @@ def Property(
         print(f'Completed: PROP_OUT_{model_input.index[0]}.csv')
     # ---- End TCPython Session
     elapsed_time_model: float = time.monotonic() - t0
-    write_cpu_log(folder, model_input, elapsed_time_model)
+    write_cpu_log(folder, model_input, elapsed_time_model, cpu_block)
     return None
 
 if __name__ == '__main__':
@@ -71,13 +72,13 @@ if __name__ == '__main__':
     
     # ---- User inputted parameters
     file_name: str = 'TiVCo_n3_d25_single_system'
-    file_divisions: int = 10
-    cpu_cores: int = 10
+    file_divisions: int = 12
+    cpu_cores: int = 12
     version: str = '2024b'
     database = 'TCHEA7'
-    upper_temp_limit_in_kelvin: int = 2200 # e.g. 2200
+    upper_temp_limit_in_kelvin: int = 2600 # e.g. 3000
 
-    folder = f'{file_name}_TCprop1'
+    folder = f'{file_name}_TCprop2'
     if not os.path.exists(folder):
         os.mkdir(folder)
     
@@ -114,5 +115,5 @@ if __name__ == '__main__':
     t1_2: float = time.monotonic()
     elapsed_time = t1_2 - t1_1
     
-    write_execution_log(folder, file_name, rows_total, file_divisions, cpu_cores, upper_temp_limit_in_kelvin, rows_per_division, elapsed_time)
+    write_execution_log(folder, file_name, rows_total, file_divisions, cpu_cores, upper_temp_limit_in_kelvin, rows_per_division, elapsed_time, version_info, cpu_logs)
 
