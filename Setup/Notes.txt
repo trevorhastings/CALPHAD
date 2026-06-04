@@ -7,3 +7,7 @@ All calculations presume molar fractions.
 The library is used for multiple modules. It can be imported from the same folder that the script runs in, similar to a local module installation. No action is required other than downloading the file.
 
 In order to prevent hanging cores and a whole host of other potential problems, the TC scripts are split into single system and multi-system versions. Meaning, if you try to submit a csv with multiple types of systems into the single system file, it will throw an error. The single system scripts are optimized for speed for this purpose and will stay within the system present in the first row of data for all cores. 
+
+
+The Equilbrium file for multiple composition systems needs to be updated, but it will run on its own.
+The property file should run on the HPRC but has not been benchmarked; an older file that was previously ran on the HPRC is in the folder.
